@@ -67,14 +67,17 @@ let g:neocomplete#min_keyword_length = 3
 inoremap <expr><C-g>     neocomplete#undo_completion()
 inoremap <expr><C-l>     neocomplete#complete_common_string()
 
-" Recommended key-mappings.
 " <CR>: close popup and save indent.
-inoremap <silent> <CR> <C-r>=<SID>my_cr_function()<CR>
-function! s:my_cr_function()
-  return neocomplete#close_popup() . "\<CR>"
-  " For no inserting <CR> key.
-  return pumvisible() ? neocomplete#close_popup() : "\<CR>"
-endfunction
+" ## Because of error, disabled.
+"inoremap <silent> <CR> <C-r>=<SID>my_cr_function()<CR>
+"function! s:my_cr_function()
+"  return neocomplete#close_popup() . "\<CR>"
+"  " For no inserting <CR> key.
+"  return pumvisible() ? neocomplete#close_popup() : "\<CR>"
+"endfunction
+
+
+" Recommended key-mappings.
 " <TAB>: completion.
 inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
 " <C-h>, <BS>: close popup and delete backword char.
@@ -218,7 +221,7 @@ endif
 " Prettiness on the bottom {{{
 " That weird colorful line on the bottom
 NeoBundle "bling/vim-airline"
-let g:airline_theme='tomorrow'
+" let g:airline_theme='tomorrow'
 set laststatus=2
 set encoding=utf-8
 if has("gui_running")
@@ -227,25 +230,19 @@ if has("gui_running")
   set guifont=Source\ Code\ Pro\ for\ Powerline:h13
 endif
 
-function! AirlineOverride(...)
-  let g:airline_section_a = airline#section#create(['mode'])
-  let g:airline_section_b = airline#section#create_left(['branch'])
-  let g:airline_section_c = airline#section#create_left(['%f'])
-  let g:airline_section_y = airline#section#create([])
-endfunction
-autocmd VimEnter * call AirlineOverride()
+" ## because of error, below codes are disabled.
+"function! AirlineOverride(...)
+"  let g:airline_section_a = airline#section#create(['mode'])
+"  let g:airline_section_b = airline#section#create_left(['branch'])
+"  let g:airline_section_c = airline#section#create_left(['%f'])
+"  let g:airline_section_y = airline#section#create([])
+"endfunction
+"autocmd VimEnter * call AirlineOverride()
 
 " }}}
 
 " Visually sets marks
 NeoBundle "kshenoy/vim-signature"
-
-" Colorscheme {{{
-NeoBundle "Slava/vim-colors-tomorrow"
-set t_Co=256
-let g:tomorrow_termcolors = 256
-let g:tomorrow_termtrans = 0 " set to 1 if using transparant background
-let g:tomorrow_diffmode = "high"
 
 "set background=light
 set background=dark
@@ -288,13 +285,14 @@ endif
 "}}}
 
 " Prefer spaces to tabs and set size to 2
-set tabstop=2
-set softtabstop=2
-set shiftwidth=2
-set expandtab
+"set tabstop=2
+"set softtabstop=2
+"set shiftwidth=2
+"set expandtab
+autocmd FileType clojure setl tabstop=2 softtabstop=2 shiftwidth=2 expendtab
 
 " Allows to use mouse to move the cursor
-set mouse=a
+" set mouse=a
 
 " Tweak the behavior of <Tab> in command mode
 set wildmenu
@@ -421,10 +419,4 @@ set wildignore=*.so,*.a,*.pyc,.meteor,.build.*,.git
 " This is good enough for folding and is not as slow as "syntax"
 set foldmethod=indent
 
-try
-  colorscheme tomorrow
-  set background=dark
-catch
-    " we don't have this theme or it throws
-endtry
 
