@@ -289,7 +289,7 @@ endif
 "set softtabstop=2
 "set shiftwidth=2
 "set expandtab
-autocmd FileType clojure setl tabstop=2 softtabstop=2 shiftwidth=2 expendtab
+autocmd FileType clojure setl tabstop=2 softtabstop=2 shiftwidth=2 expandtab
 
 " Allows to use mouse to move the cursor
 " set mouse=a
